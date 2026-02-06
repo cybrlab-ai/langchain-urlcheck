@@ -1,14 +1,13 @@
 name: CI/CD
 
 on:
-  push:
-    branches:
-      - main
-    tags:
-      - 'v*'
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish to PyPI after build'
+        required: false
+        type: boolean
+        default: false
 
 permissions: {}
 
@@ -97,7 +96,7 @@ jobs:
     name: Publish to TestPyPI
     runs-on: ubuntu-latest
     needs: build
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    if: inputs.publish == true
     environment:
       name: testpypi
       url: https://test.pypi.org/p/langchain-urlcheck
@@ -119,7 +118,7 @@ jobs:
     name: Publish to PyPI
     runs-on: ubuntu-latest
     needs: [build, publish-testpypi]
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    if: inputs.publish == true
     environment:
       name: pypi
       url: https://pypi.org/p/langchain-urlcheck
@@ -140,7 +139,7 @@ jobs:
     name: Create GitHub Release
     runs-on: ubuntu-latest
     needs: publish-pypi
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    if: inputs.publish == true
     permissions:
       contents: write
 

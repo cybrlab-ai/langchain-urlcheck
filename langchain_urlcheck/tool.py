@@ -23,11 +23,11 @@ try:
     from langchain_core.tools import BaseTool
 except ImportError:
     try:
-        from langchain.callbacks.manager import (
+        from langchain.callbacks.manager import (  # type: ignore[no-redef]
             AsyncCallbackManagerForToolRun,
             CallbackManagerForToolRun,
         )
-        from langchain.tools import BaseTool
+        from langchain.tools import BaseTool  # type: ignore[no-redef]
     except ImportError as e:
         raise ImportError("LangChain not found. Install with: pip install langchain-core") from e
 
@@ -331,6 +331,8 @@ class SafeUrlScanTool(BaseTool):
         if missing:
             raise McpClientError(f"Missing fields in scan result: {', '.join(missing)}")
 
+        assert risk_score is not None
+        assert confidence is not None
         return ScanResult(
             risk_score=float(risk_score),
             confidence=float(confidence),

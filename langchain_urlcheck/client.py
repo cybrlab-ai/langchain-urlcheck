@@ -110,11 +110,11 @@ class _McpClientCommon:
         jitter = random.uniform(0.0, max(0.01, self.retry_base_delay_seconds))
         delay = min(exponential + jitter, self.retry_max_delay_seconds)
 
-        retry_after_seconds = getattr(error, "retry_after_seconds", None)
+        retry_after_seconds: float | None = getattr(error, "retry_after_seconds", None)
         if retry_after_seconds is not None:
             delay = max(delay, float(retry_after_seconds))
 
-        return min(delay, remaining)
+        return float(min(delay, remaining))
 
     def _parse_jsonrpc_response(self, response: dict[str, Any]) -> dict[str, Any]:
         if not isinstance(response, dict):
