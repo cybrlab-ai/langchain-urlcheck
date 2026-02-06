@@ -62,7 +62,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest tests/ -v --cov=langchain_urlcheck --cov-report=xml --cov-report=term-missing
+          pytest tests/unit_tests/ -v --cov=langchain_urlcheck --cov-report=xml --cov-report=term-missing
 
       - name: Upload coverage
         uses: codecov/codecov-action@v4

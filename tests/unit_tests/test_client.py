@@ -82,8 +82,10 @@ class TestUrlScannerMcpClient:
         try:
             with pytest.raises(McpRateLimitError) as exc_info:
                 client.scan("https://example.com")
-            assert "Rate limited" in str(exc_info.value)
-            assert exc_info.value.retryable is True
+            err = exc_info.value
+            assert isinstance(err, McpRateLimitError)
+            assert "Rate limited" in str(err)
+            assert err.retryable is True
         finally:
             client.close()
 
@@ -230,7 +232,9 @@ class TestJsonRpcErrorMapping:
         try:
             with pytest.raises(McpRateLimitError) as exc_info:
                 client.scan("https://example.com")
-            assert exc_info.value.code == -32029
+            err = exc_info.value
+            assert isinstance(err, McpRateLimitError)
+            assert err.code == -32029
         finally:
             client.close()
 
@@ -256,7 +260,9 @@ class TestJsonRpcErrorMapping:
         try:
             with pytest.raises(McpValidationError) as exc_info:
                 client.scan("not-a-url")
-            assert exc_info.value.code == -32602
+            err = exc_info.value
+            assert isinstance(err, McpValidationError)
+            assert err.code == -32602
         finally:
             client.close()
 

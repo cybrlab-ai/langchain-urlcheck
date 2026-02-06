@@ -2,6 +2,17 @@
 
 All notable changes to `langchain-urlcheck` will be documented in this file.
 
+## [0.1.2] - 2026-02-06
+
+### Added
+
+- Standard `ToolsIntegrationTests` from `langchain-tests` for full LangChain integration compliance.
+
+### Changed
+
+- Restructured tests into `tests/unit_tests/` and `tests/integration_tests/` per LangChain conventions.
+- CI now runs only unit tests explicitly (`tests/unit_tests/`).
+
 ## [0.1.1] - 2026-02-06
 
 ### Changed

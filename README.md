@@ -253,7 +253,13 @@ except McpConnectionError:
 Unit tests:
 
 ```bash
-pytest tests/test_client.py tests/test_tool.py tests/test_adapter.py tests/test_tool_standard.py -v
+pytest tests/unit_tests/ -v
+```
+
+Standard integration tests (requires live MCP endpoint, free tier):
+
+```bash
+URLCHECK_RUN_LIVE_TESTS=1 pytest tests/integration_tests/ -v
 ```
 
 ## Security and Responsible Use

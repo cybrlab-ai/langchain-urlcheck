@@ -27,10 +27,15 @@ env/
 .coverage
 htmlcov/
 .tox/
+tests/test_integration.py
+tests/test_published_package.py
 
 # Linting
 .ruff_cache/
 .mypy_cache/
+
+# Python version manager
+.python-version
 
 # OS
 .DS_Store
