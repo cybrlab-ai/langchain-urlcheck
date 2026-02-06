@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "langchain-urlcheck"
-version = "0.1.0"
+version = "0.1.1"
 description = "LangChain tool that lets agents verify URL safety before navigation via URLCheck MCP server"
 readme = "README.md"
 license = { text = "MIT" }

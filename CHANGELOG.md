@@ -2,6 +2,14 @@
 
 All notable changes to `langchain-urlcheck` will be documented in this file.
 
+## [0.1.1] - 2026-02-06
+
+### Changed
+
+- Migrated CI/CD to OIDC Trusted Publishers for PyPI publishing.
+- Switched workflow to manual dispatch with branch guard on main.
+- Fixed mypy strict type errors in client and tool modules.
+
 ## [0.1.0] - 2026-02-06
 
 Initial public release.
