@@ -122,6 +122,7 @@ jobs:
         with:
           repository-url: https://test.pypi.org/legacy/
           attestations: false
+          verbose: true
 
   publish-pypi:
     name: Publish to PyPI
