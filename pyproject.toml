@@ -78,8 +78,10 @@ Changelog = "https://github.com/cybrlab-ai/langchain-urlcheck/blob/main/CHANGELO
 
 [tool.hatch.build.targets.wheel]
 packages = ["langchain_urlcheck"]
+core-metadata-version = "2.3"
 
 [tool.hatch.build.targets.sdist]
+core-metadata-version = "2.3"
 include = [
     "langchain_urlcheck/*.py",
     "langchain_urlcheck/py.typed",
